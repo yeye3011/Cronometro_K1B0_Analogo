@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cronometro k1B0</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="timer-grid" id="timerGrid"></section>
+  </main>
+
+  <template id="timerTemplate">
+    <article class="timer-card">
+      <div class="timer-section">
+        <svg class="bg-decoration" viewBox="0 0 200 200" preserveAspectRatio="none" aria-hidden="true">
+          <polygon points="10,30 25,15 40,30 25,50" fill="#7da87b" />
+          <polygon points="160,170 175,155 190,170 175,190" fill="#a8c69f" />
+          <polygon points="180,40 190,30 195,45 185,55" fill="#8fbc8f" />
+          <polygon points="15,180 30,165 40,180 25,195" fill="#b4c7af" />
+        </svg>
+
+        <div class="section-label">K1B0 <span class="section-number"></span></div>
+
+        <div class="timer-box">
+          <div class="time-display">05:00</div>
+
+          <div class="controls">
+            <button class="btn btn-start" type="button">Iniciar</button>
+            <button class="btn btn-pause" type="button" disabled>Pausar</button>
+            <button class="btn btn-reset" type="button">Reiniciar</button>
+          </div>
+
+          <label class="time-adjuster">
+            <span>Escoger tiempo:</span>
+            <input class="minutes-input" type="number" min="1" max="60" value="5" />
+          </label>
+        </div>
+
+        <div class="lives" aria-label="Vidas restantes"></div>
+
+        <svg class="branch branch-left" viewBox="0 0 100 100" aria-hidden="true">
+          <line x1="50" y1="100" x2="50" y2="40" />
+          <line x1="50" y1="60" x2="30" y2="50" />
+          <line x1="50" y1="70" x2="70" y2="55" />
+          <polygon points="30,50 25,45 35,42" />
+          <polygon points="70,55 75,50 68,48" />
+        </svg>
+
+        <svg class="branch branch-right" viewBox="0 0 100 100" aria-hidden="true">
+          <line x1="50" y1="0" x2="50" y2="60" />
+          <line x1="50" y1="40" x2="70" y2="50" />
+          <line x1="50" y1="30" x2="30" y2="45" />
+          <polygon points="70,50 75,55 65,58" />
+          <polygon points="30,45 25,50 32,52" />
+        </svg>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>

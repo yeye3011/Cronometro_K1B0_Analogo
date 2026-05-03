@@ -1,7 +1,6 @@
 const timerGrid = document.querySelector('#timerGrid');
 const timerTemplate = document.querySelector('#timerTemplate');
 
-// Cambia este número según cada cuántos minutos quieres que se pierda una vida
 const LIFE_LOSS_INTERVAL_MINUTES = 5;
 
 function createHeart(isActive) {
@@ -45,7 +44,8 @@ function setupTimer(sectionElement, sectionNumber) {
   let initialMinutes = 5;
   let isActive = false;
   let intervalId = null;
-  let lifeIntervalId = null;
+  let elapsedSeconds = 0;
+  const lifeLossSound = new Audio('Sounds/WarningSound.mp3');
 
   sectionNumberElement.textContent = sectionNumber;
 
@@ -65,33 +65,40 @@ function setupTimer(sectionElement, sectionNumber) {
   }
 
   function stopTimer() {
-    isActive = false;
+  isActive = false;
 
-    clearInterval(intervalId);
-    clearInterval(lifeIntervalId);
+  clearInterval(intervalId);
+  intervalId = null;
 
-    intervalId = null;
-    lifeIntervalId = null;
-
-    render();
+  render();
   }
 
-  function startLifeLossTimer() {
-    clearInterval(lifeIntervalId);
 
-    lifeIntervalId = setInterval(() => {
-      if (isActive && lives > 0) {
-        lives -= 1;
-        render();
-      }
+  function loseLife() {
+    if (lives <= 0) return;
 
-      if (lives === 0) {
-        stopTimer();
-      }
-    }, LIFE_LOSS_INTERVAL_MINUTES * 60 * 1000);
+    lives -= 1;
+
+    const sound = new Audio('Sounds/WarningSound.mp3');
+    sound.volume = 1;
+    sound.play().catch((error) => {
+      console.log('No se pudo reproducir el sonido:', error);
+    });
+
+    render();
+
+    if (lives === 0) {
+      stopTimer();
+    }
   }
 
   function tick() {
+    elapsedSeconds += 1;
+
+    if (elapsedSeconds % (LIFE_LOSS_INTERVAL_MINUTES * 60) === 0) {
+      loseLife();
+    }
+
     if (seconds === 0) {
       if (minutes === 0) {
         minutes = initialMinutes;
@@ -114,7 +121,6 @@ function setupTimer(sectionElement, sectionNumber) {
 
     isActive = true;
     intervalId = setInterval(tick, 1000);
-    startLifeLossTimer();
 
     render();
   });
@@ -123,10 +129,9 @@ function setupTimer(sectionElement, sectionNumber) {
 
   resetButton.addEventListener('click', () => {
     clearInterval(intervalId);
-    clearInterval(lifeIntervalId);
 
     intervalId = null;
-    lifeIntervalId = null;
+    elapsedSeconds = 0;
 
     isActive = false;
     minutes = initialMinutes;
@@ -134,7 +139,7 @@ function setupTimer(sectionElement, sectionNumber) {
     lives = 3;
 
     render();
-  });
+  }); 
 
   minutesInput.addEventListener('input', (event) => {
     const value = Number.parseInt(event.target.value, 10);

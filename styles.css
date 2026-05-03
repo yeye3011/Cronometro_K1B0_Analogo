@@ -35,9 +35,12 @@ body {
 .timer-card {
   min-height: 0;
   overflow: hidden;
-  border: 2px solid #c4d3be;
+  border: 2px solid #bed1d3;
   border-radius: clamp(14px, 2vw, 24px);
-  background: linear-gradient(135deg, #f0f4ed, #e3ebe0);
+  background-image: url("Img/Fondo_Kibos.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.16);
 }
 
@@ -53,14 +56,6 @@ body {
   overflow: hidden;
 }
 
-.bg-decoration {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.1;
-}
-
 .section-label {
   position: absolute;
   top: clamp(10px, 2vw, 16px);
@@ -68,7 +63,7 @@ body {
   z-index: 2;
   padding: 8px 16px;
   border-radius: 999px;
-  background: #b4c7af;
+  background: #afc5c7;
   color: #ffffff;
   font-size: clamp(12px, 2vw, 14px);
   font-weight: 700;
@@ -80,9 +75,9 @@ body {
   z-index: 1;
   margin-bottom: clamp(16px, 3vw, 24px);
   padding: clamp(18px, 4vw, 20px);
-  border: clamp(2px, 0.5vw, 4px) solid #b4c7af;
+  border: clamp(2px, 0.5vw, 4px) solid #afc5c7;
   border-radius: clamp(18px, 3vw, 24px);
-  background: linear-gradient(135deg, #7da87b, #a8c69f);
+  background: linear-gradient(135deg, #7ba4a8, #9fc3c6);
   box-shadow: 0 20px 25px rgba(0, 0, 0, 0.22);
 }
 
@@ -123,16 +118,16 @@ body {
 
 .btn:disabled {
   cursor: not-allowed;
-  background: #9ca3af;
+  background: #9ca9af;
   opacity: 0.85;
 }
 
 .btn-start {
-  background: #6b9468;
+  background: #198681;
 }
 
 .btn-start:hover:not(:disabled) {
-  background: #5a7f58;
+  background: #587a7f;
 }
 
 .btn-pause {
@@ -144,11 +139,11 @@ body {
 }
 
 .btn-reset {
-  background: #8fbc8f;
+  background: #779798;
 }
 
 .btn-reset:hover:not(:disabled) {
-  background: #7da87b;
+  background: #7ba4a8;
 }
 
 .time-adjuster {
@@ -168,7 +163,7 @@ body {
   border-radius: 8px;
   padding: 8px 12px;
   background: rgba(255, 255, 255, 0.9);
-  color: #7da87b;
+  color: #7ba4a8;
   font-size: 16px;
   font-weight: 800;
   text-align: center;
@@ -202,7 +197,7 @@ body {
 }
 
 .branch line {
-  stroke: #7da87b;
+  stroke: #7ba4a8;
   stroke-linecap: round;
 }
 
@@ -215,11 +210,11 @@ body {
 }
 
 .branch polygon {
-  fill: #a8c69f;
+  fill: #9fc3c6;
 }
 
 .branch polygon:last-of-type {
-  fill: #8fbc8f;
+  fill: #8fbcbb;
 }
 
 .branch-left {
